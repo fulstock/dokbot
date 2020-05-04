@@ -1,8 +1,7 @@
 from telebot import types
 import config
-def generate_vadim(answer):
-    markup = types.ReplyKeyboardMarkup(one_time_keyboard = True, resize_keyboard = True)
-    list_items = config.player_ans_list
-    for item in list_items:
-        markup.add(item)
+def generate_vadim():
+    markup = types.InlineKeyboardMarkup()
+    for player_ans, vadim_ans in zip(config.player_ans_list, config.vadim_ans_list):
+        markup.add(types.InlineKeyboardButton(player_ans, callback_data=vadim_ans))
     return markup
